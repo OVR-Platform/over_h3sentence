@@ -11,6 +11,13 @@ class OverH3sentence
     words.join('.')
   end
 
+  def self.hex_id(sentence)
+    raise ArgumentError, 'Sentence must be 3 words long' if sentence.split('.').length != 3
+
+    h3_address = form_words_to_h3(sentence.split('.'))
+    h3_address.to_s(16)
+  end
+
   def self.form_h3_to_words(h3_address)
     binary = h3_address.to_s(2)
 
@@ -32,5 +39,49 @@ class OverH3sentence
     third_word = LIST_OF_WORDS[third_word_idx.to_i]
 
     [first_word, second_word, third_word]
+  end
+
+  def self.form_words_to_h3(words)
+    h3_invariant_head = '10001100'
+    h3_invariant_tail = '111111111'
+
+    triplet_adj = []
+    str_value = ''
+
+    for i in 0..words.length-1 do
+      for j in 0..LIST_OF_WORDS.length do
+        if (LIST_OF_WORDS[j] === words[i])
+          str_value = j.to_s
+        end
+      end
+      length_string = str_value.length
+      if (length_string < 5)
+        for n in 0..5-length_string-1 do
+          str_value = "0#{str_value}"
+        end
+      end
+
+      triplet_adj.push(str_value)
+    end
+
+
+    first_trinary_code = triplet_adj[0][0] + triplet_adj[1][0] + triplet_adj[2][0]
+    first_integer_value = 0
+
+    COMBINATIONS_VOCAB.each_with_index do |value, index|
+      if (value === first_trinary_code.to_s)
+        first_integer_value = index
+      end
+    end
+    full_integer = (first_integer_value).to_s + triplet_adj[0][-4..-1].to_s + triplet_adj[1][-4..-1].to_s + triplet_adj[2][-4..-1].to_s
+    binary_full_integer = full_integer.to_i.to_s(2)
+    binary_full_integer_length = binary_full_integer.length
+    for i in 0..43-binary_full_integer_length-1 do
+      binary_full_integer = "0#{binary_full_integer}"
+    end
+
+    whole_binary = h3_invariant_head + binary_full_integer + h3_invariant_tail
+
+    whole_binary.to_i(2)
   end
 end

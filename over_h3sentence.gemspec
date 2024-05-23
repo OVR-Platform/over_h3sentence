@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "over_h3sentence"
-  s.version     = "1.1.0"
+  s.version     = "1.2.0"
   s.summary     = "Generate sentence from Over land hex id (H3 address)"
   s.description = "Generate sentence from Over land hex id (H3 address)"
   s.authors     = ["Gregorio Galante"]
