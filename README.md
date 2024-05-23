@@ -22,3 +22,12 @@ require 'over_h3sentence'
 puts OverH3sentence.sentence('8c1ea284caf05ff')
 # -> 'latest.sell.emotionally'
 ```
+
+## Development
+
+```bash
+git clone https://github.com/gregogalante/over_h3sentence
+cd over_h3sentence
+gem install rake
+rake test
+```
