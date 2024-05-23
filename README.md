@@ -21,6 +21,9 @@ require 'over_h3sentence'
 
 puts OverH3sentence.sentence('8c1ea284caf05ff')
 # -> 'latest.sell.emotionally'
+
+puts OverH3sentence.hex_id('latest.sell.emotionally')
+# -> 8c1ea284caf05ff
 ```
 
 ## Development
