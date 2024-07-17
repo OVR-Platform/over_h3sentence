@@ -1,7 +1,7 @@
 require 'json'
 
 class OverH3sentence
-  LIST_OF_WORDS = JSON.parse(File.read(File.join(File.dirname(__FILE__), './list_of_words_v1.json')))
+  LIST_OF_WORDS = JSON.parse(File.read(File.join(File.dirname(__FILE__), './list_of_words_v2.json')))
   COMBINATIONS_VOCAB = ['000','001','010','011','100','101','110','111','002','012','020','021','022','102','112','120','121','122','200','201','202','210','211','212','220','221','222']
 
   def self.sentence(hex_id)
