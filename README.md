@@ -29,7 +29,7 @@ puts OverH3sentence.hex_id('latest.sell.emotionally')
 ## Development
 
 ```bash
-git clone https://github.com/gregogalante/over_h3sentence
+git clone https://github.com/OVR-Platform/over_h3sentence
 cd over_h3sentence
 gem install rake
 rake test
